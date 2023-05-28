@@ -11,7 +11,7 @@ class CategoriesScreen extends StatelessWidget {
         title: const Text('Choice your category'),
       ),
       body: GridView(
-        padding: const EdgeInsets.all(2),
+        padding: const EdgeInsets.all(24),
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           childAspectRatio: 3 / 2,
