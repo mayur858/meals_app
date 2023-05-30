@@ -10,7 +10,7 @@ class MealsItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: EdgeInsets.all(8),
+      margin: const EdgeInsets.all(8),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8),
       ),
@@ -39,7 +39,7 @@ class MealsItem extends StatelessWidget {
                       textAlign: TextAlign.center,
                       softWrap: true,
                       overflow: TextOverflow.ellipsis, //Very Long Text .....
-                      style: TextStyle(
+                      style: const TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
                           color: Colors.white),
@@ -47,7 +47,7 @@ class MealsItem extends StatelessWidget {
                     const SizedBox(
                       height: 10,
                     ),
-                    Row(
+                    const Row(
                       children: [],
                     ),
                   ],
