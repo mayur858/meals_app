@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:mealsapp/widgets/meal_item_trait.dart';
 import 'package:mealsapp/models/meal.dart';
 import 'package:transparent_image/transparent_image.dart';
 
@@ -7,6 +7,15 @@ class MealsItem extends StatelessWidget {
   const MealsItem({super.key, required this.meal});
 
   final Meal meal;
+
+  String get complexitytext {
+    return meal.complexity.name[0] + meal.complexity.name.substring(1);
+  }
+
+  String get affordabilityText {
+    return meal.affordability.name[0] + meal.affordability.name.substring(1);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -21,8 +30,12 @@ class MealsItem extends StatelessWidget {
         child: Stack(
           children: [
             FadeInImage(
-                placeholder: MemoryImage(kTransparentImage),
-                image: NetworkImage(meal.imageUrl)),
+              placeholder: MemoryImage(kTransparentImage),
+              image: NetworkImage(meal.imageUrl),
+              fit: BoxFit.cover,
+              height: 200,
+              width: double.infinity,
+            ),
             Positioned(
               left: 0,
               right: 0,
@@ -47,8 +60,24 @@ class MealsItem extends StatelessWidget {
                     const SizedBox(
                       height: 10,
                     ),
-                    const Row(
-                      children: [],
+                    Row(
+                      children: [
+                        MealsItemTraits(
+                            icon: Icons.schedule,
+                            label: '${meal.duration} min'),
+                        const SizedBox(
+                          width: 12,
+                        ),
+                        MealsItemTraits(
+                          icon: Icons.work,
+                          label: complexitytext,
+                        ),
+                        const SizedBox(
+                          width: 12,
+                        ),
+                        MealsItemTraits(
+                            icon: Icons.attach_money, label: affordabilityText),
+                      ],
                     ),
                   ],
                 ),
