@@ -43,11 +43,18 @@ class MealsDetailsScreen extends StatelessWidget {
               ),
               Text(
                 "steps",
-                style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                       color: Theme.of(context).colorScheme.primary,
                     ),
               ),
-              for (final steps in meal.steps) Text(steps)
+              for (final steps in meal.steps)
+                Text(
+                  steps,
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                        color: Theme.of(context).colorScheme.background,
+                      ),
+                )
             ],
           ),
         ));
