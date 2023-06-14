@@ -48,12 +48,16 @@ class MealsDetailsScreen extends StatelessWidget {
                     ),
               ),
               for (final steps in meal.steps)
-                Text(
-                  steps,
-                  textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                        color: Theme.of(context).colorScheme.background,
-                      ),
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
+                  child: Text(
+                    steps,
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                          color: Theme.of(context).colorScheme.background,
+                        ),
+                  ),
                 )
             ],
           ),
