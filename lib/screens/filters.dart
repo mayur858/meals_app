@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 class FiltersScreen extends StatefulWidget {
   const FiltersScreen({super.key});
 
+  @override
   State<StatefulWidget> createState() {
     return _FiltersScreenState();
   }
@@ -19,7 +20,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Filters"),
+        title: const Text("Filters"),
       ),
       // drawer: MainDrawer(onSelectedScreen: (indentifier) {
       //   if (indentifier == "meals") {
