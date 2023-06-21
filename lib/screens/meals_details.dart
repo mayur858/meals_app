@@ -35,7 +35,7 @@ class MealsDetailsScreen extends StatelessWidget {
                 Text(
                   ingredients,
                   style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                        color: Theme.of(context).colorScheme.background,
+                        color: Theme.of(context).colorScheme.onBackground,
                       ),
                 ),
               const SizedBox(
@@ -55,7 +55,7 @@ class MealsDetailsScreen extends StatelessWidget {
                     steps,
                     textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                          color: Theme.of(context).colorScheme.background,
+                          color: Theme.of(context).colorScheme.onBackground,
                         ),
                   ),
                 )
