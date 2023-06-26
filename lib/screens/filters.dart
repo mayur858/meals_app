@@ -9,16 +9,16 @@ class FiltersScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final activeFilters = ref.read(filterProvider);
+    final activeFilters = ref.read(filtersProvider);
     return Scaffold(
       appBar: AppBar(
         title: const Text("Filters"),
       ),
       body: Column(children: [
         SwitchListTile(
-          value: activeFilters[Filter.glutenfree]!,
+          value: activeFilters[Filter.glutenFree]!,
           onChanged: (isChecked) {
-            ref.read(filterProvider.notifier).setFilter(Filter.glutenfree, isChecked);
+            ref.read(filtersProvider.notifier).setFilter(Filter.glutenFree, isChecked);
           },
           title: Text(
             "Gluten-Free",
@@ -39,7 +39,7 @@ class FiltersScreen extends ConsumerWidget {
         SwitchListTile(
           value: activeFilters[Filter.vegan]!,
           onChanged: (isChecked) {
-            ref.read(filterProvider.notifier).setFilter(Filter.vegan, isChecked);
+            ref.read(filtersProvider.notifier).setFilter(Filter.vegan, isChecked);
           },
           title: Text(
             "Vegan",
@@ -58,9 +58,9 @@ class FiltersScreen extends ConsumerWidget {
           contentPadding: const EdgeInsets.only(left: 34, right: 22),
         ),
         SwitchListTile(
-          value: activeFilters[Filter.vegatrain]!,
+          value: activeFilters[Filter.vegetarian]!,
           onChanged: (isChecked) {
-            ref.read(filterProvider.notifier).setFilter(Filter.vegatrain, isChecked);
+            ref.read(filtersProvider.notifier).setFilter(Filter.vegetarian, isChecked);
           },
           title: Text(
             "Vegaterian",
@@ -79,9 +79,9 @@ class FiltersScreen extends ConsumerWidget {
           contentPadding: const EdgeInsets.only(left: 34, right: 22),
         ),
         SwitchListTile(
-          value: activeFilters[Filter.lactosefree]!,
+          value: activeFilters[Filter.lactoseFree]!,
           onChanged: (isChecked) {
-            ref.read(filterProvider.notifier).setFilter(Filter.vegatrain, isChecked);
+            ref.read(filtersProvider.notifier).setFilter(Filter.lactoseFree, isChecked);
           },
           title: Text(
             "Lactose-Free",
