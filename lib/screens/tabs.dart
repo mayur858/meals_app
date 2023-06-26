@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:mealsapp/providers/filters_provider.dart';
 import 'package:mealsapp/providers/meals_provider.dart';
-import 'package:mealsapp/models/meal.dart';
 import 'package:mealsapp/screens/categories.dart';
 import 'package:mealsapp/screens/filters.dart';
 import 'package:mealsapp/screens/meals.dart';
@@ -26,7 +26,7 @@ class TabsScreen extends ConsumerStatefulWidget {
 class _TabsScreenState extends ConsumerState<TabsScreen> {
   var _selectedPageIndex = 0;
 
-  Map<Filter, bool> _selectedFilters = kIntialFilters;
+
 
 
 
@@ -42,17 +42,18 @@ class _TabsScreenState extends ConsumerState<TabsScreen> {
   @override
   Widget build(BuildContext context) {
     final meals = ref.watch(mealsProvider);
+    final activeFilters = ref.read(filterProvider);
     final avaliableMeals = meals.where((meal) {
-      if (_selectedFilters[Filter.glutenfree]! && !meal.isGlutenFree) {
+      if (activeFilters[Filter.glutenfree]! && !meal.isGlutenFree) {
         return false;
       }
-      if (_selectedFilters[Filter.lactosefree]! && !meal.isLactoseFree) {
+      if (activeFilters[Filter.lactosefree]! && !meal.isLactoseFree) {
         return false;
       }
-      if (_selectedFilters[Filter.vegan]! && !meal.isVegan) {
+      if (activeFilters[Filter.vegan]! && !meal.isVegan) {
         return false;
       }
-      if (_selectedFilters[Filter.vegatrain]! && !meal.isVegetarian) {
+      if (activeFilters[Filter.vegatrain]! && !meal.isVegetarian) {
         return false;
       }
       return true;
@@ -62,7 +63,7 @@ class _TabsScreenState extends ConsumerState<TabsScreen> {
     );
 
     if (_selectedPageIndex == 1) {
-      final favouriteMeals = ref.watch(FavouriteMealsProvider);
+      final favouriteMeals = ref.watch(favouriteMealsProvider);
       activePage = MealsScreen(
         meals: favouriteMeals,
       );
@@ -72,14 +73,12 @@ class _TabsScreenState extends ConsumerState<TabsScreen> {
     void _setScreen(String identifier) async {
       Navigator.of(context).pop();
       if (identifier == 'filters') {
-        final result = await Navigator.of(context).push<Map<Filter, bool>>(
+        await Navigator.of(context).push<Map<Filter, bool>>(
           MaterialPageRoute(
-            builder: (ctx) => FiltersScreen(currentFilters: _selectedFilters),
+            builder: (ctx) =>const FiltersScreen(),
           ),
         );
-        setState(() {
-          _selectedFilters = result ?? kIntialFilters;
-        });
+      
       }
     }
 

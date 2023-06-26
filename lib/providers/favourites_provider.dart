@@ -1,5 +1,4 @@
 
-import 'dart:ffi';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mealsapp/models/meal.dart';
@@ -23,6 +22,6 @@ bool toggleMealsFavouriteStatus(Meal meal){
 }
 }
 
-final FavouriteMealsProvider = StateNotifierProvider<FavouriteMealNotifier,List<Meal>>((ref){
+final favouriteMealsProvider = StateNotifierProvider<FavouriteMealNotifier,List<Meal>>((ref){
   return FavouriteMealNotifier();
 });
