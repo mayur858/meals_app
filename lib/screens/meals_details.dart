@@ -1,23 +1,31 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mealsapp/models/meal.dart';
+import 'package:mealsapp/providers/favourites_provider.dart';
 
-class MealsDetailsScreen extends StatelessWidget {
-  const MealsDetailsScreen(
-      {super.key, required this.meal, required this.onToggleFavourite});
+class MealsDetailsScreen extends ConsumerWidget {
+  const MealsDetailsScreen({
+    super.key,
+    required this.meal,
+  });
 
   final Meal meal;
-  final void Function(Meal meal) onToggleFavourite;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
         appBar: AppBar(
           title: Text(meal.title),
           actions: [
             IconButton(
                 onPressed: () {
-                  onToggleFavourite(meal);
+                  final wasAdded =
+                      ref.read(FavouriteMealsProvider.notifier).toggleMealsFavouriteStatus(meal);
+                  ScaffoldMessenger.of(context).clearSnackBars();
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content: Text(wasAdded
+                          ? 'Meal was added as a favourite'
+                          : 'Meal was not added as favourite')));
                 },
                 icon: const Icon(Icons.star))
           ],
@@ -58,8 +66,7 @@ class MealsDetailsScreen extends StatelessWidget {
               ),
               for (final steps in meal.steps)
                 Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
+                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
                   child: Text(
                     steps,
                     textAlign: TextAlign.center,
